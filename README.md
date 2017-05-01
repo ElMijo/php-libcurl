@@ -1,2 +1,2 @@
-# php-libcurl
-This is e simple wrap of PHP libcurl
+# PHP LibCurl
+This is a simple wrap of PHP libcurl
