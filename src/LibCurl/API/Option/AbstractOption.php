@@ -11,6 +11,7 @@ namespace PhpTools\LibCurl\API\Option;
 use RuntimeException;
 use PhpTools\LibCurl\API\Exception\InvalidCurlOptionException;
 use PhpTools\LibCurl\API\Exception\InvalidCurlOptionTypeException;
+use PhpTools\LibCurl\API\Exception\InvalidCurlOptionListException;
 
 /**
  * CuRL Options abstract class
@@ -32,6 +33,12 @@ abstract class AbstractOption
     ];
 
     /**
+     * Valid options
+     * @var array
+     */
+    private $options = [];
+
+    /**
      * The construct
      *
      * @throw RuntimeException
@@ -50,17 +57,28 @@ abstract class AbstractOption
         if (!in_array($this->getType(), $this->validTypes)) {
             throw new InvalidCurlOptionTypeException($this->getType());
         }
+
+        if (!is_array($this->getOptionList())
+            || empty(array_filter($this->getOptionList(), 'is_string'))
+        ) {
+            throw new InvalidCurlOptionListException(get_class($this));
+        }
+        foreach (array_filter($this->getOptionList(), 'is_string') as $option) {
+            if (defined($option)) {
+                $this->options[] = constant($option);
+            }
+        }
     }
 
     /**
      * Check if the option exists in the list of options
      *
-     * @param  string  $option
+     * @param  int  $option
      * @return bool
      */
     final public function hasOption($option)
     {
-        return in_array($option, array_filter($this->getOptions(), 'is_long'));
+        return in_array($option, $this->getOptions());
     }
 
     /**
@@ -71,7 +89,7 @@ abstract class AbstractOption
      */
     final public function validate($option, $value)
     {
-        if (!$this->isValidOption($option)) {
+        if (!$this->hasOption($option)) {
             throw new InvalidCurlOptionException($option);
         }
 
@@ -79,13 +97,13 @@ abstract class AbstractOption
     }
 
     /**
-     * Valid if the option exists in the option's list.
-     * @param  string   $option
-     * @return bool
+     * Return all valid options
+     *
+     * @return long[]
      */
-    private function isValidOption($option)
+    final public function getOptions()
     {
-        return in_array($option, array_filter($this->getOptions(), 'is_long'));
+        return $this->options;
     }
 
     /**

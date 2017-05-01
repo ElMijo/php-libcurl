@@ -20,6 +20,12 @@ interface OptionInterface
      * Let you get option's list
      * @return array
      */
+    public function getOptionList();
+
+    /**
+     * Let you get option's list
+     * @return array
+     */
     public function getOptions();
 
     /**

@@ -27,13 +27,13 @@ class ResourceOption extends AbstractOption implements OptionInterface
     /**
      * {@inheritDoc}
      */
-    public function getOptions()
+    public function getOptionList()
     {
         return [
-            CURLOPT_FILE,
-            CURLOPT_INFILE,
-            CURLOPT_STDERR,
-            CURLOPT_WRITEHEADER,
+            'CURLOPT_FILE',
+            'CURLOPT_INFILE',
+            'CURLOPT_STDERR',
+            'CURLOPT_WRITEHEADER',
         ];
     }
 }

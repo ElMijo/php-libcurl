@@ -17,25 +17,32 @@ use PhpTools\LibCurl\API\Option\OptionInterface;
 class ArrayOption extends AbstractOption implements OptionInterface
 {
     /**
+     * base options of curl options array type
+     * @var array
+     */
+    private $options = [
+    ];
+
+    /**
      * {@inheritDoc}
      */
     public function getType()
     {
-        return 'string';
+        return 'array';
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getOptions()
+    public function getOptionList()
     {
         return [
-            CURLOPT_CONNECT_TO,
-            CURLOPT_HTTP200ALIASES,
-            CURLOPT_HTTPHEADER,
-            CURLOPT_POSTQUOTE,
-            CURLOPT_PROXYHEADER,
-            CURLOPT_QUOTE,
+            'CURLOPT_HTTP200ALIASES',
+            'CURLOPT_HTTPHEADER',
+            'CURLOPT_POSTQUOTE',
+            'CURLOPT_QUOTE',
+            'CURLOPT_CONNECT_TO',
+            'CURLOPT_PROXYHEADER',
         ];
     }
 }

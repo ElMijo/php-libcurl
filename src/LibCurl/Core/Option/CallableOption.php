@@ -27,14 +27,14 @@ class CallableOption extends AbstractOption implements OptionInterface
     /**
      * {@inheritDoc}
      */
-    public function getOptions()
+    public function getOptionList()
     {
         return [
-            CURLOPT_HEADERFUNCTION,
-            CURLOPT_PASSWDFUNCTION,
-            CURLOPT_PROGRESSFUNCTION,
-            CURLOPT_READFUNCTION,
-            CURLOPT_WRITEFUNCTION,
+            'CURLOPT_HEADERFUNCTION',
+            'CURLOPT_PASSWDFUNCTION',
+            'CURLOPT_PROGRESSFUNCTION',
+            'CURLOPT_READFUNCTION',
+            'CURLOPT_WRITEFUNCTION',
         ];
     }
 }
