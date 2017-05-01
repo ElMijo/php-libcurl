@@ -9,7 +9,6 @@
 namespace PhpTools\LibCurl\API\Option;
 
 use RuntimeException;
-use PhpTools\LibCurl\Lib\Exception\InvalidStringException;
 use PhpTools\LibCurl\API\Exception\InvalidCurlOptionException;
 use PhpTools\LibCurl\API\Exception\InvalidCurlOptionTypeException;
 
