@@ -20,10 +20,6 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "files": [
-            "src/LibCurl/Lib/String.php",
-            "src/LibCurl/Lib/Exceptions.php"
-        ],
         "psr-4": {
             "PhpTools\\LibCurl\\":"src/LibCurl/"
         }

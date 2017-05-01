@@ -42,9 +42,9 @@ abstract class AbstractOption
     {
         if (!is_subclass_of($this, 'PhpTools\LibCurl\API\Option\OptionInterface')) {
             throw new RuntimeException(sprintf(
-                "Class %s must extends class %s",
+                "Class %s must implement class %s",
                 get_class($this),
-                "PhpTools\PhpCurl\Core\PhpCurlAware"
+                "PhpTools\LibCurl\API\Option\OptionInterface"
             ));
         }
 
