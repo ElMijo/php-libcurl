@@ -7,9 +7,11 @@ class OptionCurlTest extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         static::$fixturesPath = __DIR__.'/Fixtures';
+        require_once static::$fixturesPath.'/Option/TestFailOptionInterface.php';
         require_once static::$fixturesPath.'/Option/TestFailOptionType.php';
         require_once static::$fixturesPath.'/Option/TestFalOptionListOne.php';
         require_once static::$fixturesPath.'/Option/TestFalOptionListTwo.php';
+        require_once static::$fixturesPath.'/Option/TestFalOptionListThree.php';
     }
 
     public function testNewClassSuccess()
@@ -202,7 +204,6 @@ class OptionCurlTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($class->validateOption(CURLOPT_INFILE, ''));
         $this->assertFalse($class->validateOption(CURLOPT_COOKIE, 12));
         $this->assertFalse($class->validateOption(CURLOPT_COOKIEFILE, 12));
-
     }
 
     /**
@@ -219,7 +220,7 @@ class OptionCurlTest extends \PHPUnit_Framework_TestCase
      */
     public function testFailOptionType()
     {
-        $class = new TestFailOptionType();
+        $class = new TestFailOptionType;
     }
 
     /**
@@ -227,13 +228,29 @@ class OptionCurlTest extends \PHPUnit_Framework_TestCase
      */
     public function testFailOptionListOne()
     {
-        $class = new TestFalOptionListOne();
+        $class = new TestFalOptionListOne;
     }
     /**
      *  @expectedException PhpTools\LibCurl\API\Exception\InvalidCurlOptionListException
      */
     public function testFailOptionListTwo()
     {
-        $class = new TestFalOptionListTwo();
+        $class = new TestFalOptionListTwo;
+    }
+
+    /**
+     *  @expectedException PhpTools\LibCurl\API\Exception\InvalidCurlOptionListException
+     */
+    public function testFailOptionListThree()
+    {
+        $class = new TestFalOptionListThree;
+    }
+
+    /**
+     *  @expectedException \RuntimeException
+     */
+    public function testFailOptionInterface()
+    {
+        $class = new TestFailOptionInterface;
     }
 }
