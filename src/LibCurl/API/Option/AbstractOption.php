@@ -58,12 +58,17 @@ abstract class AbstractOption
             throw new InvalidCurlOptionTypeException($this->getType());
         }
 
-        if (!is_array($this->getOptionList())
-            || empty(array_filter($this->getOptionList(), 'is_string'))
-        ) {
+        $optionList = $this->getOptionList();
+        if (!is_array($optionList)) {
             throw new InvalidCurlOptionListException(get_class($this));
         }
-        foreach (array_filter($this->getOptionList(), 'is_string') as $option) {
+
+        $optionList = array_filter($optionList, 'is_string');
+        if (empty($optionList)) {
+            throw new InvalidCurlOptionListException(get_class($this));
+        }
+
+        foreach ($optionList as $option) {
             if (defined($option)) {
                 $this->options[] = constant($option);
             }
